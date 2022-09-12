@@ -5,7 +5,6 @@ namespace ecommerce_task.Models
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public List<Subcategory> SubCategories { get; set; }
 
     }
 }
