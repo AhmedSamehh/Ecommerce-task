@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "x3wGx1HyE+lyIcVuaDWkHaAAuyRge0FTlwEADg965yQ=",
+  "Source": "ecommerce_task",
+  "BasePath": "_content/ecommerce_task",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
