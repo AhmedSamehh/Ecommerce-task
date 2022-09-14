@@ -46,11 +46,13 @@ namespace ecommerce_task.Controllers
         }
 
         [HttpGet("/products/{subcategoryId}")]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProducts(int subcategoryId)
+        public async Task<ActionResult<IEnumerable<Product>>> GetProducts(int subcategoryId, string? sortBy)
         {
             try
             {
-                return await _lookupService.GetProducts(subcategoryId);
+                if (sortBy == null)
+                    sortBy = "";
+                return await _lookupService.GetProductsBySubCategory(subcategoryId, sortBy);
             }
             catch
             {
@@ -59,11 +61,13 @@ namespace ecommerce_task.Controllers
         }
 
         [HttpGet("/products/category/{categoryId}")]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProductsByCategory(int categoryId)
+        public async Task<ActionResult<IEnumerable<Product>>> GetProductsByCategory(int categoryId, string? sortBy)
         {
             try
             {
-                return await _lookupService.GetProductsByCategory(categoryId);
+                if (sortBy == null)
+                    sortBy = "";
+                return await _lookupService.GetProductsByCategory(categoryId, sortBy);
             }
             catch
             {
