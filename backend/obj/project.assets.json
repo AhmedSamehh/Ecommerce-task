@@ -2231,11 +2231,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\work\\Gameball\\ecommerce_task\\ecommerce_task.csproj",
+      "projectUniqueName": "D:\\work\\Gameball\\ecommerce_task\\backend\\ecommerce_task.csproj",
       "projectName": "ecommerce_task",
-      "projectPath": "D:\\work\\Gameball\\ecommerce_task\\ecommerce_task.csproj",
+      "projectPath": "D:\\work\\Gameball\\ecommerce_task\\backend\\ecommerce_task.csproj",
       "packagesPath": "C:\\Users\\a7med\\.nuget\\packages\\",
-      "outputPath": "D:\\work\\Gameball\\ecommerce_task\\obj\\",
+      "outputPath": "D:\\work\\Gameball\\ecommerce_task\\backend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\a7med\\AppData\\Roaming\\NuGet\\NuGet.Config",

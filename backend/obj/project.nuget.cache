@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KsMITP/T82KV+SHymnv89eypHpq8XF2w2a6bpwOc1HMSNkfRcZ/TCKMjI4wV/YmIxj+nEM4wVzo3zznjDdiSJA==",
+  "dgSpecHash": "2QVC0d/k2w+ivm/TJy7DUrABSOuyg6JzNCIF5TPCt7UTLEWSzuzjBuYTlwtrNBTcSg+HNai+4A0c+K8ue9WY4Q==",
   "success": true,
-  "projectFilePath": "D:\\work\\Gameball\\ecommerce_task\\ecommerce_task.csproj",
+  "projectFilePath": "D:\\work\\Gameball\\ecommerce_task\\backend\\ecommerce_task.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\a7med\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\a7med\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
