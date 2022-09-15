@@ -1,4 +1,5 @@
-<div class="container py-4 px-5">
+<div class="container d-flex flex-column py-4 px-5 h-100">
+        <div >
     <h2>{{title}}</h2>
     <p class="text-muted">Welcome back, Olivia!</p>
     <div *ngIf="subcategories !=undefined && subcategories.length!=0" class="row">
@@ -34,7 +35,19 @@
             </div>
         </div>
     </div>
+</div>
+<div class="mt-auto">
+    <nav>
+        <div class="d-flex justify-content-between">
+            <button (click)="changePage(currentPage-1)" mat-button ><mat-icon>arrow_back</mat-icon> Previous</button>
 
-    
+            <ul class="pagination justify-content-center">
+                <li (click)="changePage(i+1)"  *ngFor="let page of ' '.repeat(totalPages).split(''), let i = index" class="page-item active"><a class="page-link">{{i + 1}}</a></li>
+              </ul>
+              <button (click)="changePage(currentPage+1)" mat-button >Next <mat-icon>arrow_forward</mat-icon></button>
 
+        </div>
+        
+      </nav>
+    </div>
 </div>

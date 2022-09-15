@@ -2,6 +2,7 @@ using ecommerce_task.Models;
 using ecommerce_task.Services;
 using hotel_backend.Data;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 
 namespace ecommerce_task.Controllers
 {
@@ -46,13 +47,24 @@ namespace ecommerce_task.Controllers
         }
 
         [HttpGet("/products/{subcategoryId}")]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProducts(int subcategoryId, string? sortBy)
+        public async Task<ActionResult<IEnumerable<Product>>> GetProducts(int subcategoryId, string? sortBy, [FromQuery] PaginationParameters @params)
         {
             try
             {
                 if (sortBy == null)
                     sortBy = "";
-                return await _lookupService.GetProductsBySubCategory(subcategoryId, sortBy);
+
+                var products = await _lookupService.GetProductsBySubCategory(subcategoryId, sortBy, @params);
+
+                var paginationMetaData = new PaginationMetadata(products.Count(), @params.Page, @params.ItemsPerPage);
+
+                Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(paginationMetaData));
+                Response.Headers.Add("Access-Control-Expose-Headers", "X-Pagination");
+
+                var paginatedProducts = products.Skip((@params.Page - 1) * @params.ItemsPerPage)
+                .Take(@params.ItemsPerPage);
+
+                return paginatedProducts.ToList();
             }
             catch
             {
@@ -61,11 +73,20 @@ namespace ecommerce_task.Controllers
         }
 
         [HttpGet("/products/category/{categoryId}")]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProductsByCategory(int categoryId)
+        public async Task<ActionResult<IEnumerable<Product>>> GetProductsByCategory(int categoryId, [FromQuery] PaginationParameters @params)
         {
-            try
-            {
-                return await _lookupService.GetProductsByCategory(categoryId);
+            try 
+            { 
+                var products = await _lookupService.GetProductsByCategory(categoryId, @params);
+                var paginationMetaData = new PaginationMetadata(products.Count(), @params.Page, @params.ItemsPerPage);
+
+                Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(paginationMetaData));
+                Response.Headers.Add("Access-Control-Expose-Headers", "X-Pagination");
+
+                var paginatedProducts = products.Skip((@params.Page - 1) * @params.ItemsPerPage)
+                .Take(@params.ItemsPerPage);
+
+                return paginatedProducts.ToList();
             }
             catch
             {

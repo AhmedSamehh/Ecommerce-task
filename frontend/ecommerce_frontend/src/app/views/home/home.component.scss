@@ -11,3 +11,13 @@
         color: #fff;
     }
 }
+
+.pagination a {
+    border-radius: 50%;
+    border: 0px;
+    background-color:transparent;
+    color: black;
+  }
+  
+  .pagination a:hover:not(.active) {background-color: #f2f2f3;}
+

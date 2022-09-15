@@ -13,6 +13,9 @@ export class HomeComponent implements OnInit {
   subcategories:any;
   products:any;
   currentSubCategoryId:any;
+  currentPage:number = 1;
+  totalPages:number = 1;
+  itemsPerPage:number = 1;
   
   constructor(private http: HttpClient, private route:ActivatedRoute) {}
 
@@ -39,13 +42,16 @@ export class HomeComponent implements OnInit {
 
   getProductsBySubCategoryId(id:any, sortBy?:string) {
 
-    var url = 'https://localhost:7212/products/'+id;
+    var url = 'https://localhost:7212/products/'+id+"?Page=" + this.currentPage+ "&ItemsPerPage="+this.itemsPerPage;
 
     if(sortBy != undefined)
-      url += '?sortBy=' +sortBy;
+      url += '&sortBy=' +sortBy;
 
-    this.http.get(url).subscribe(response => {
-      this.products = response;
+    this.http.get(url, {observe: 'response'}).subscribe(response => {
+      var xPagination = JSON.parse(response.headers.get('X-Pagination') as string)
+
+      this.totalPages = xPagination.TotalPages;
+      this.products = response.body;
       this.title = this.products[0].category.title;
       this.currentSubCategoryId = id;
 
@@ -55,8 +61,14 @@ export class HomeComponent implements OnInit {
   }
 
   getProductsByCategoryId() {
-    this.http.get('https://localhost:7212/products/category/'+this.categoryId).subscribe(response => {
-      this.products = response;
+    var url = 'https://localhost:7212/products/category/'+this.categoryId+"?Page=" + this.currentPage+ "&ItemsPerPage="+this.itemsPerPage;
+    this.http.get(url, {observe: 'response'}).subscribe(response => {
+      
+
+      var xPagination = JSON.parse(response.headers.get('X-Pagination') as string)
+
+      this.totalPages = xPagination.TotalPages;
+      this.products = response.body;
       this.title = this.products[0].category.title;
 
     }, err => {
@@ -70,5 +82,17 @@ export class HomeComponent implements OnInit {
 
   buyNow(name:any, price:any) {
     alert("Are you sure you want to buy "+ name+ " for $"+ price + "?");
+  }
+
+  changePage(pageNumber:any) {
+    if(pageNumber>=1&&pageNumber<=this.totalPages)
+    {
+      this.currentPage = pageNumber;
+      if(this.subcategories.length>0)
+        this.getProductsBySubCategoryId(this.currentSubCategoryId)
+      else 
+      this.getProductsByCategoryId()
+    }
+    
   }
 }

@@ -2,6 +2,7 @@
 using hotel_backend.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
 
 namespace ecommerce_task.Services
 {
@@ -24,7 +25,7 @@ namespace ecommerce_task.Services
             return subcategories;
         }
 
-        public async Task<ActionResult<IEnumerable<Product>>> GetProductsBySubCategory(int subcategoryId, string sortBy)
+        public async Task<IEnumerable<Product>> GetProductsBySubCategory(int subcategoryId, string sortBy, PaginationParameters @params)
         {
             var products = await _context.Products.Where(p => p.Subcategory.Id == subcategoryId)
                 .Include(p=>p.Category)
@@ -38,11 +39,10 @@ namespace ecommerce_task.Services
 
             else if (sortBy.ToUpper() == "NAME")
                 products = products.OrderBy(p => p.Name).ToList();
-
             return products;
         }
 
-        public async Task<ActionResult<IEnumerable<Product>>> GetProductsByCategory(int categoryId)
+        public async Task<IEnumerable<Product>> GetProductsByCategory(int categoryId, PaginationParameters @params)
         {
             var products = await _context.Products.Where(p => p.Category.Id == categoryId)
                 .Include(p => p.Category)

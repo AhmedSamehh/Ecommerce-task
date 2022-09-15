@@ -7,7 +7,7 @@ namespace ecommerce_task.Services
     {
         public Task<ActionResult<IEnumerable<Category>>> GetCategories();
         public Task<ActionResult<IEnumerable<Subcategory>>> GetSubcategories(int categoryId);
-        public Task<ActionResult<IEnumerable<Product>>> GetProductsBySubCategory(int subcategoryId, string sortBy);
-        public Task<ActionResult<IEnumerable<Product>>> GetProductsByCategory(int categoryId);
+        public Task<IEnumerable<Product>> GetProductsBySubCategory(int subcategoryId, string sortBy, PaginationParameters @params);
+        public Task<IEnumerable<Product>> GetProductsByCategory(int categoryId, PaginationParameters @params);
     }
 }
