@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   currentSubCategoryId:any;
   currentPage:number = 1;
   totalPages:number = 1;
-  itemsPerPage:number = 1;
+  itemsPerPage:number = 5;
   
   constructor(private http: HttpClient, private route:ActivatedRoute) {}
 

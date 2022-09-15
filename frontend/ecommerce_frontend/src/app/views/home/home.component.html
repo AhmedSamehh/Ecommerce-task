@@ -1,53 +1,53 @@
 <div class="container d-flex flex-column py-4 px-5 h-100">
-        <div >
-    <h2>{{title}}</h2>
-    <p class="text-muted">Welcome back, Olivia!</p>
-    <div *ngIf="subcategories !=undefined && subcategories.length!=0" class="row">
-        <div class="col-10">
-            <mat-button-toggle-group style="border-radius: 10px;" >
-                <mat-button-toggle *ngFor="let subcategory of subcategories; let i = index"
-                 (click)="getProductsBySubCategoryId(subcategory.id)" [value]="subcategory"
-                  [checked]="i === 0">{{subcategory.title}}
-                </mat-button-toggle>
-            </mat-button-toggle-group>
+    <div >
+        <h2>{{title}}</h2>
+        <p class="text-muted">Welcome back, Olivia!</p>
+        <div *ngIf="subcategories !=undefined && subcategories.length!=0" class="row">
+            <div class="col-10">
+                <mat-button-toggle-group style="border-radius: 10px;" >
+                    <mat-button-toggle *ngFor="let subcategory of subcategories; let i = index"
+                    (click)="getProductsBySubCategoryId(subcategory.id)" [value]="subcategory"
+                    [checked]="i === 0">{{subcategory.title}}
+                    </mat-button-toggle>
+                </mat-button-toggle-group>
+            </div>
+            <div class="col-2 ml-auto">
+                <button mat-stroked-button [matMenuTriggerFor]="menu" style="background-color: #ffffff"><mat-icon>filter_list</mat-icon> Sort By</button>
+                <mat-menu #menu="matMenu">
+                    <button (click)="sortProducts('NAME')" mat-menu-item>Name</button>
+                    <button (click)="sortProducts('L2H')" mat-menu-item>Price Low to High</button>
+                    <button (click)="sortProducts('H2L')" mat-menu-item>Price High to Low</button>
+                </mat-menu>
+            </div>
         </div>
-        <div class="col-2 ml-auto">
-            <button mat-stroked-button [matMenuTriggerFor]="menu" style="background-color: #ffffff"><mat-icon>filter_list</mat-icon> Sort By</button>
-            <mat-menu #menu="matMenu">
-                <button (click)="sortProducts('NAME')" mat-menu-item>Name</button>
-                <button (click)="sortProducts('L2H')" mat-menu-item>Price Low to High</button>
-                <button (click)="sortProducts('H2L')" mat-menu-item>Price High to Low</button>
-            </mat-menu>
+
+        <div *ngFor="let product of products" class="col-12 mt-2 text-center">
+            <div class="row py-3 text-start border-bottom">
+                <div class="col-8 pt-2">
+                    {{product.name}}
+                </div>
+                <div class="col-2 pt-2">
+                    <p style="color:#039855">${{product.price}}</p>
+
+                </div>
+                <div class="col-2">
+                    <button (click)="buyNow(product.name, product.price)" mat-button style="background-color: #FDF2EC; color:#FE6215">Buy Now</button>
+                </div>
+            </div>
         </div>
     </div>
-  
-    <div *ngFor="let product of products" class="col-12 mt-2 text-center">
-        <div class="row py-3 text-start border-bottom">
-            <div class="col-8 pt-2">
-                {{product.name}}
-            </div>
-            <div class="col-2 pt-2">
-                <p style="color:#039855">${{product.price}}</p>
+    <div class="mt-auto">
+        <nav>
+            <div class="d-flex justify-content-between">
+                <button (click)="changePage(currentPage-1)" mat-button ><mat-icon>arrow_back</mat-icon> Previous</button>
+
+                <ul class="pagination justify-content-center">
+                    <li (click)="changePage(i+1)"  *ngFor="let page of ' '.repeat(totalPages).split(''), let i = index" class="page-item active"><a class="page-link">{{i + 1}}</a></li>
+                </ul>
+                <button (click)="changePage(currentPage+1)" mat-button >Next <mat-icon>arrow_forward</mat-icon></button>
 
             </div>
-            <div class="col-2">
-                <button (click)="buyNow(product.name, product.price)" mat-button style="background-color: #FDF2EC; color:#FE6215">Buy Now</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="mt-auto">
-    <nav>
-        <div class="d-flex justify-content-between">
-            <button (click)="changePage(currentPage-1)" mat-button ><mat-icon>arrow_back</mat-icon> Previous</button>
-
-            <ul class="pagination justify-content-center">
-                <li (click)="changePage(i+1)"  *ngFor="let page of ' '.repeat(totalPages).split(''), let i = index" class="page-item active"><a class="page-link">{{i + 1}}</a></li>
-              </ul>
-              <button (click)="changePage(currentPage+1)" mat-button >Next <mat-icon>arrow_forward</mat-icon></button>
-
-        </div>
-        
-      </nav>
+            
+        </nav>
     </div>
 </div>
