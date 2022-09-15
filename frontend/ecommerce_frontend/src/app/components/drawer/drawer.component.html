@@ -5,7 +5,7 @@
             <img class="mx-1" src="/assets/imgs/logo-text.png" alt="Logo">
         </div>
         <div *ngFor="let category of categories" class="col-12 mt-2 text-center">
-            <button mat-button class="w-75 text-start" [routerLink]="['home', category.id, {title:category.title}]" routerLinkActive="active" >
+            <button mat-button class="w-75 text-start" [routerLink]="['home', category.id]" routerLinkActive="active" >
                     <div class="row pt-1">
                         <div class="col-2 pt-1">
                             <mat-icon>{{category.iconName}}</mat-icon>

@@ -42,20 +42,11 @@ namespace ecommerce_task.Services
             return products;
         }
 
-        public async Task<ActionResult<IEnumerable<Product>>> GetProductsByCategory(int categoryId, string sortBy)
+        public async Task<ActionResult<IEnumerable<Product>>> GetProductsByCategory(int categoryId)
         {
             var products = await _context.Products.Where(p => p.Category.Id == categoryId)
                 .Include(p => p.Category)
                 .Include(p => p.Subcategory).ToListAsync();
-
-            if (sortBy.ToUpper() == "L2H")
-                products = products.OrderBy(p => p.Price).ToList();
-
-            else if (sortBy.ToUpper() == "H2L")
-                products = products.OrderByDescending(p => p.Price).ToList();
-
-            else if (sortBy.ToUpper() == "NAME")
-                products = products.OrderBy(p => p.Name).ToList();
 
             return products;
         }

@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
   title:String = "";
   subcategories:any;
   products:any;
+  currentSubCategoryId:any;
   
   constructor(private http: HttpClient, private route:ActivatedRoute) {}
 
@@ -19,7 +20,6 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.categoryId = params['id'];
-      this.title = params['title'];
       this.getSubCategories();
     });
     
@@ -37,10 +37,18 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  getProductsBySubCategoryId(id:any) {
-    this.http.get('https://localhost:7212/products/'+id).subscribe(response => {
+  getProductsBySubCategoryId(id:any, sortBy?:string) {
+
+    var url = 'https://localhost:7212/products/'+id;
+
+    if(sortBy != undefined)
+      url += '?sortBy=' +sortBy;
+
+    this.http.get(url).subscribe(response => {
       this.products = response;
-      
+      this.title = this.products[0].category.title;
+      this.currentSubCategoryId = id;
+
     }, err => {
       console.log(err);
     })
@@ -49,9 +57,18 @@ export class HomeComponent implements OnInit {
   getProductsByCategoryId() {
     this.http.get('https://localhost:7212/products/category/'+this.categoryId).subscribe(response => {
       this.products = response;
-      
+      this.title = this.products[0].category.title;
+
     }, err => {
       console.log(err);
     })
+  }
+
+  sortProducts(sortBy:string) {
+    this.getProductsBySubCategoryId(this.currentSubCategoryId, sortBy);
+  }
+
+  buyNow(name:any, price:any) {
+    alert("Are you sure you want to buy "+ name+ " for $"+ price + "?");
   }
 }

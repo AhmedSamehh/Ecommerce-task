@@ -14,13 +14,15 @@ import { HomeComponent } from './views/home/home.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatMenuModule} from '@angular/material/menu';
+import { ProductsComponent } from './views/products/products.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DrawerComponent,
     HomeComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,

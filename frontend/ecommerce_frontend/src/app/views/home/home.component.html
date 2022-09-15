@@ -1,18 +1,21 @@
 <div class="container py-4 px-5">
     <h2>{{title}}</h2>
     <p class="text-muted">Welcome back, Olivia!</p>
-    <div *ngIf="subcategories.length>0" class="row">
+    <div *ngIf="subcategories !=undefined && subcategories.length!=0" class="row">
         <div class="col-10">
             <mat-button-toggle-group style="border-radius: 10px;" name="fontStyle" aria-label="Font Style">
-                <mat-button-toggle *ngFor="let subcategory of subcategories" (click)="getProductsBySubCategoryId(subcategory.id)" [value]="subcategory">{{subcategory.title}}</mat-button-toggle>
+                <mat-button-toggle *ngFor="let subcategory of subcategories; let i = index"
+                 (click)="getProductsBySubCategoryId(subcategory.id)" [value]="subcategory"
+                  [checked]="i === 0">{{subcategory.title}}
+                </mat-button-toggle>
             </mat-button-toggle-group>
         </div>
         <div class="col-2 ml-auto">
             <button mat-stroked-button [matMenuTriggerFor]="menu"><mat-icon>filter_list</mat-icon> Sort By</button>
             <mat-menu #menu="matMenu">
-                <button mat-menu-item>Name</button>
-                <button mat-menu-item>Price Low to High</button>
-                <button mat-menu-item>Price High to Low</button>
+                <button (click)="sortProducts('NAME')" mat-menu-item>Name</button>
+                <button (click)="sortProducts('L2H')" mat-menu-item>Price Low to High</button>
+                <button (click)="sortProducts('H2L')" mat-menu-item>Price High to Low</button>
             </mat-menu>
         </div>
     </div>
@@ -27,7 +30,7 @@
 
             </div>
             <div class="col-2">
-                <button mat-button style="background-color: #FDF2EC; color:#FE6215">Buy Now</button>
+                <button (click)="buyNow(product.name, product.price)" mat-button style="background-color: #FDF2EC; color:#FE6215">Buy Now</button>
             </div>
         </div>
     </div>

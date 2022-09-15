@@ -61,13 +61,11 @@ namespace ecommerce_task.Controllers
         }
 
         [HttpGet("/products/category/{categoryId}")]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProductsByCategory(int categoryId, string? sortBy)
+        public async Task<ActionResult<IEnumerable<Product>>> GetProductsByCategory(int categoryId)
         {
             try
             {
-                if (sortBy == null)
-                    sortBy = "";
-                return await _lookupService.GetProductsByCategory(categoryId, sortBy);
+                return await _lookupService.GetProductsByCategory(categoryId);
             }
             catch
             {
