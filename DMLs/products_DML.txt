@@ -1,8 +1,0 @@
-INSERT INTO dbo.Products (Id, Price, CategoryId, SubcategoryId)
-VALUES 
-( 1, 'Apple',18.99, 1, 1),
-( 2, 'Banana',4.5, 1, 1),
-( 3, 'Amaranth Leaves',18.99, 1, 2),
-( 4, 'Bitter Melon',4.5, 1, 2),
-( 5, 'Air purifier',20, 2, NULL),
-( 6, 'Air conditioner',33.88, 2, NULL)

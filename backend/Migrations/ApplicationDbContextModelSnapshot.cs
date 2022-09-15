@@ -38,7 +38,7 @@ namespace ecommerce_task.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("ecommerce_task.Models.Product", b =>
@@ -67,7 +67,7 @@ namespace ecommerce_task.Migrations
 
                     b.HasIndex("SubcategoryId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("ecommerce_task.Models.Subcategory", b =>
@@ -88,7 +88,7 @@ namespace ecommerce_task.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Subcategories");
+                    b.ToTable("Subcategories", (string)null);
                 });
 
             modelBuilder.Entity("ecommerce_task.Models.Product", b =>

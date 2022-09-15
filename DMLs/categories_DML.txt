@@ -1,4 +1,0 @@
-INSERT INTO dbo.Categories(Id, Title, IconName)
-VALUES 
-( 1, 'Food', 'local_mall'),
-( 2, 'Electronics','headphones')
