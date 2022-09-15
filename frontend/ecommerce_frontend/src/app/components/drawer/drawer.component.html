@@ -1,11 +1,11 @@
 <div class="h-100 d-flex align-items-start flex-column">
-    <div class="row mt-4 mb-auto">
+    <div class="row pt-4 mb-auto">
         <div class="col-10 text-center mb-3">
             <img src="/assets/imgs/logo.png" alt="Logo">
-            <img class="mx-1" src="/assets/imgs/logo-text.png" alt="Logo">
+            <img class="px-1" src="/assets/imgs/logo-text.png" alt="Logo">
         </div>
-        <div *ngFor="let category of categories" class="col-12 mt-2 text-center">
-            <button mat-button class="w-75 text-start" [routerLink]="['home', category.id]" routerLinkActive="active" >
+        <div *ngFor="let category of categories" class="col-12 pt-2 text-center">
+            <button mat-button class="menu-btn text-start" [routerLink]="['home', category.id]" routerLinkActive="active" >
                     <div class="row pt-1">
                         <div class="col-2 pt-1">
                             <mat-icon>{{category.iconName}}</mat-icon>
@@ -18,7 +18,7 @@
         </div>
     </div>
     <div class="footer row p-4">
-        <hr class="text-muted">
+        <hr class="text-muted p-2">
         <div class="col-3 text-center">
             <img src="/assets/imgs/avatar.png" alt="Logo">
         </div>

@@ -1,0 +1,4 @@
+INSERT INTO dbo.Subcategories(Id, Title, CategoryId)
+VALUES 
+( 1, 'Fruits', 1),
+( 2, 'Vegetables', 1)

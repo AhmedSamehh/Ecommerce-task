@@ -3,7 +3,7 @@
     <p class="text-muted">Welcome back, Olivia!</p>
     <div *ngIf="subcategories !=undefined && subcategories.length!=0" class="row">
         <div class="col-10">
-            <mat-button-toggle-group style="border-radius: 10px;" name="fontStyle" aria-label="Font Style">
+            <mat-button-toggle-group style="border-radius: 10px;" >
                 <mat-button-toggle *ngFor="let subcategory of subcategories; let i = index"
                  (click)="getProductsBySubCategoryId(subcategory.id)" [value]="subcategory"
                   [checked]="i === 0">{{subcategory.title}}
@@ -11,7 +11,7 @@
             </mat-button-toggle-group>
         </div>
         <div class="col-2 ml-auto">
-            <button mat-stroked-button [matMenuTriggerFor]="menu"><mat-icon>filter_list</mat-icon> Sort By</button>
+            <button mat-stroked-button [matMenuTriggerFor]="menu" style="background-color: #ffffff"><mat-icon>filter_list</mat-icon> Sort By</button>
             <mat-menu #menu="matMenu">
                 <button (click)="sortProducts('NAME')" mat-menu-item>Name</button>
                 <button (click)="sortProducts('L2H')" mat-menu-item>Price Low to High</button>
@@ -34,5 +34,7 @@
             </div>
         </div>
     </div>
+
+    
 
 </div>
